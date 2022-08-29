@@ -92,5 +92,19 @@ function DisplayTodos () {
             DisplayTodos(); 
         })
         
+        edit.addEventListener('click', e => {
+            const input = content.querySelector('input');
+            const end = input.value.length;
+
+            input.removeAttribute('readonly');
+            input.setSelectionRange(end, end);
+            input.focus();
+            input.addEventListener('blur', e => {
+                input.setAttribute('readonly', true);
+                todo.content = e.target.value;
+                localStorage.setItem('todos', JSON.stringify(todos));
+                DisplayTodos();
+            })
+        })
     })
 }
