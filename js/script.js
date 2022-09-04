@@ -13,13 +13,14 @@ window.addEventListener('load', () =>{
 
     newTodoForm.addEventListener('submit', e => {
         e.preventDefault();
-
         const todo = {
-            content: e.target.elements.content.value,
+            content_Business: e.target.elements.content_Business.value,
+            content_Persnoal: e.target.elements.content_Persnoal.value,
             category: e.target.elements.category.value,
             done: false,
             createdAt: new Date().getTime()
         }
+        console.log(content_Business)
         
         todos.push(todo);
 
@@ -29,6 +30,7 @@ window.addEventListener('load', () =>{
 
         DisplayTodos();
     })
+
     DisplayTodos();
 })
 
@@ -44,7 +46,8 @@ function DisplayTodos () {
         const label = document.createElement('label');
         const input = document.createElement('input');
         const span = document.createElement('span');
-        const content = document.createElement('div');
+        const content_Business = document.createElement('div');
+        const content_Persnoal = document.createElement('div');
         const actions = document.createElement('div');
         const edit = document.createElement('button');
         const deleteButton = document.createElement('button');
@@ -57,12 +60,14 @@ function DisplayTodos () {
         } else {
             span.classList.add('business');
         }
-        content.classList.add('todo-content');
+        content_Persnoal.classList.add('todo-content');
+        content_Business.classList.add('todo-content');
         actions.classList.add('actions');
         edit.classList.add('edit');
         deleteButton.classList.add('delete');
 
-        content.innerHTML = `<input type="text" value="${todo.content}" readonly>`;
+        content_Business.innerHTML = `<input type="text" value="${todo.content_Business}" readonly>`;
+        content_Persnoal.innerHTML = `<input type="text" value="${todo.content_Persnoal}" readonly>`;
         edit.innerHTML = 'Edit';
         deleteButton.innerHTML = 'Delete';
 
@@ -71,7 +76,8 @@ function DisplayTodos () {
         actions.appendChild(edit);
         actions.appendChild(deleteButton);
         todoItem.appendChild(label);
-        todoItem.appendChild(content);
+        todoItem.appendChild(content_Business);
+        todoItem.appendChild(content_Persnoal);
         todoItem.appendChild(actions);
 
         todoList.appendChild(todoItem);
